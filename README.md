@@ -42,16 +42,16 @@ npm start
 ## 📸 Screenshots
 
 ### 🔐 Login Page
-![Login](Screenshots/HomeTab.png)
+![Login](Screenshot/HomeTab.png)
 
 ### 🎓 Student Dashboard
-![Student](Screenshots/StudentDashboard.png)
+![Student](Screenshot/StudentDashboard.png)
 
 ### 👨‍🏫 Faculty Dashboard
-![Faculty](Screenshots/FacultyDashboard.png)
+![Faculty](Screenshot/FacultyDashboard.png)
 
 ### 👩‍💼 Advisor Dashboard
-![Advisor](Screenshots/ClassAdvisorDashboard.png)
+![Advisor](Screenshot/ClassAdvisorDashboard.png)
 
 ### 👨‍💼 Admin Dashboard
-![Admin](Screenshots/HodDashboard.png)
+![Admin](Screenshot/HodDashboard.png)
