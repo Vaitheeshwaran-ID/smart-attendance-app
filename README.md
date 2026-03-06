@@ -1,6 +1,8 @@
 # 🎓 Smart Curriculum & Attendance Management System
 
 A full-stack web application for college attendance management using QR codes and GPS verification.
+made with assistence of claude
+
 
 ## 👥 Roles
 - 🎓 Student — Mark attendance, view reports
