@@ -39,5 +39,19 @@ npm install
 npm start
 ```
 
-## 📊 Screenshots
-Coming soon...
+## 📸 Screenshots
+
+### 🔐 Login Page
+![Login](Screenshots/HomeTab.png)
+
+### 🎓 Student Dashboard
+![Student](Screenshots/StudentDashboard.png)
+
+### 👨‍🏫 Faculty Dashboard
+![Faculty](Screenshots/FacultyDashboard.png)
+
+### 👩‍💼 Advisor Dashboard
+![Advisor](Screenshots/ClassAdvisorDashboard.png)
+
+### 👨‍💼 Admin Dashboard
+![Admin](Screenshots/HodDashboard.png)
