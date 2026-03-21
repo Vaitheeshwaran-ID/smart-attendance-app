@@ -23,10 +23,23 @@ const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState('attendance');
 
   useEffect(() => {
-    loadReport();
-    loadTimetable();
-    loadSyllabus();
-  }, []);
+    const loadDashboardData = async () => {
+      await loadReport();
+      try {
+        const dept = user?.department || 'Computer Science';
+        const section = user?.section || 'CSE-A';
+        const [timetableRes, syllabusRes] = await Promise.all([
+          getWeeklyTimetableAPI(dept, section),
+          getSectionSyllabusAPI(dept, section),
+        ]);
+        setTimetable(timetableRes.data);
+        setSyllabus(syllabusRes.data);
+      } catch {
+        // Keep dashboard usable even if auxiliary data fails.
+      }
+    };
+    loadDashboardData();
+  }, [user]);
 
   const loadReport = async () => {
     try {
@@ -34,25 +47,6 @@ const StudentDashboard = () => {
       setReport(res.data);
     } catch { setErr('Failed to load report!'); }
     setLoading(false);
-  };
-
-  const loadTimetable = async () => {
-    try {
-      // Use student's department & section from user context
-      const dept    = user?.department || 'Computer Science';
-      const section = user?.section    || 'CSE-A';
-      const res = await getWeeklyTimetableAPI(dept, section);
-      setTimetable(res.data);
-    } catch {}
-  };
-
-  const loadSyllabus = async () => {
-    try {
-      const dept    = user?.department || 'Computer Science';
-      const section = user?.section    || 'CSE-A';
-      const res = await getSectionSyllabusAPI(dept, section);
-      setSyllabus(res.data);
-    } catch {}
   };
 
   const handleMark = async () => {

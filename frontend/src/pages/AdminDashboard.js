@@ -14,7 +14,6 @@ const AdminDashboard = () => {
   const [dept, setDept]         = useState('Computer Science');
   const [msg, setMsg]           = useState('');
   const [err, setErr]           = useState('');
-  const [loading, setLoading]   = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const [regForm, setRegForm]   = useState({
     name:'', email:'', password:'',
@@ -28,7 +27,6 @@ const AdminDashboard = () => {
       const res = await getDashboardStatsAPI();
       setStats(res.data);
     } catch { setErr('Failed to load stats'); }
-    setLoading(false);
   };
 
   const loadReport = async () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from '../components/Navbar';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -22,7 +22,6 @@ const FacultyDashboard = () => {
   const [activeTab, setActiveTab] = useState('start');
 
   // ─── Faculty States ───
-  const [facultyReport, setFacultyReport] = useState(null);
   const [sessions, setSessions] = useState([]);
   const [sessionAttendance, setSessionAttendance] = useState([]);
   const [selectedSession, setSelectedSession] = useState(null);
@@ -46,6 +45,19 @@ const FacultyDashboard = () => {
     room: '', facultyEmail: ''
   });
 
+  const loadAdvisorDashboard = useCallback(async () => {
+    try {
+      const res = await getAdvisorDashboardAPI();
+      setAdvisorDashboard(res.data);
+      // Load timetable & syllabus using advisor's dept/section
+      const { department, section } = res.data;
+      if (department && section) {
+        loadSectionTimetable(department, section);
+        loadSectionSyllabus(department, section);
+      }
+    } catch { setErr('Failed to load advisor dashboard!'); }
+  }, []);
+
   // ─── Data Loading ───
   useEffect(() => {
     const loadData = async () => {
@@ -63,13 +75,12 @@ const FacultyDashboard = () => {
       setLoading(false);
     };
     loadData();
-  }, [user]);
+  }, [user, loadAdvisorDashboard]);
 
   // ─── Faculty API Calls ───
   const loadFacultyReport = async () => {
     try {
       const res = await getFacultyReportAPI();
-      setFacultyReport(res.data);
       setSessions(res.data.sessionReports || []);
     } catch { setErr('Failed to load faculty report!'); }
   };
@@ -128,19 +139,6 @@ const FacultyDashboard = () => {
   };
 
   // ─── Advisor API Calls ───
-  const loadAdvisorDashboard = async () => {
-    try {
-      const res = await getAdvisorDashboardAPI();
-      setAdvisorDashboard(res.data);
-      // Load timetable & syllabus using advisor's dept/section
-      const { department, section } = res.data;
-      if (department && section) {
-        loadSectionTimetable(department, section);
-        loadSectionSyllabus(department, section);
-      }
-    } catch { setErr('Failed to load advisor dashboard!'); }
-  };
-
   const loadSectionTimetable = async (dept, section) => {
     try {
       const res = await getWeeklyTimetableAPI(dept, section);
@@ -168,7 +166,7 @@ const FacultyDashboard = () => {
       setErr('Please fill all fields!'); return;
     }
     try {
-      const res = await createStudentAPI(studentForm);
+      await createStudentAPI(studentForm);
       setMsg(`✅ Student "${studentForm.name}" created!`);
       setStudentForm({ name: '', email: '', password: '' });
       loadAdvisorDashboard();
