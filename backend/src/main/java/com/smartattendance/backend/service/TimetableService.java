@@ -24,17 +24,21 @@ public class TimetableService {
             Map<String, String> request) {
         Map<String, String> response = new HashMap<>();
 
-        String facultyEmail = SecurityContextHolder.getContext()
-                .getAuthentication().getName();
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(userEmail).orElse(null);
 
-        User faculty = userRepository
-                .findByEmail(facultyEmail).orElse(null);
+        if (user == null || !user.isClassAdvisor()) {
+            response.put("error", "Only Class Advisors can create timetable slots.");
+            return response;
+        }
+
+        String facultyEmail = request.get("facultyEmail");
+        User faculty = userRepository.findByEmail(facultyEmail).orElse(null);
 
         Timetable timetable = new Timetable();
         timetable.setSubject(request.get("subject"));
         timetable.setFacultyEmail(facultyEmail);
-        timetable.setFacultyName(
-            faculty != null ? faculty.getName() : facultyEmail);
+        timetable.setFacultyName(faculty != null ? faculty.getRollNumber() : facultyEmail);
         timetable.setDay(request.get("day"));
         timetable.setStartTime(request.get("startTime"));
         timetable.setEndTime(request.get("endTime"));

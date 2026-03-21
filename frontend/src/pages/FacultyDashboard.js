@@ -243,73 +243,7 @@ const FacultyDashboard = () => {
         {/* ── Timetable ── */}
         {activeTab === 'timetable' && (
           <div className="fade-in">
-            {/* Add Slot */}
-            <div className="card" style={{marginBottom:16}}>
-              <div className="card-header">
-                <div className="card-title">➕ Add Timetable Slot</div>
-              </div>
-              <div className="card-body">
-                <div style={{display:'grid',
-                  gridTemplateColumns:'1fr 1fr 1fr', gap:14}}>
-                  {[
-                    { key:'subject',    label:'Subject',
-                      ph:'Mathematics' },
-                    { key:'department', label:'Department',
-                      ph:'Computer Science' },
-                    { key:'section',    label:'Section',
-                      ph:'CSE-A' },
-                    { key:'room',       label:'Room',
-                      ph:'Room 101' },
-                  ].map((f,i) => (
-                    <div className="form-group" key={i}>
-                      <label className="form-label">{f.label}</label>
-                      <input className="form-input"
-                        placeholder={f.ph}
-                        value={ttForm[f.key]}
-                        onChange={e => setTtForm({
-                          ...ttForm, [f.key]:e.target.value})} />
-                    </div>
-                  ))}
-                  <div className="form-group">
-                    <label className="form-label">Day</label>
-                    <select className="form-input"
-                      value={ttForm.day}
-                      onChange={e => setTtForm({
-                        ...ttForm, day:e.target.value})}>
-                      {DAYS.map(d => (
-                        <option key={d} value={d}>{d}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Start Time</label>
-                    <select className="form-input"
-                      value={ttForm.startTime}
-                      onChange={e => setTtForm({
-                        ...ttForm, startTime:e.target.value})}>
-                      {TIMES.map(t => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">End Time</label>
-                    <select className="form-input"
-                      value={ttForm.endTime}
-                      onChange={e => setTtForm({
-                        ...ttForm, endTime:e.target.value})}>
-                      {TIMES.map(t => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <button className="btn btn-primary"
-                  onClick={handleAddTimetable}>
-                  ➕ Add Slot
-                </button>
-              </div>
-            </div>
+
 
             {/* Weekly View */}
             <div className="card">

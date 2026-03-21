@@ -16,6 +16,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String rollNumber;
+
     @Column(nullable = false)
     private String name;
 
@@ -33,9 +36,12 @@ public class User {
     private String department;
 
 
-private String section;
+    private String section;
+
+    @Column(nullable = false)
+    private boolean isClassAdvisor;
 
     public enum Role {
-    STUDENT, FACULTY, CLASS_ADVISOR, ADMIN
-}
+        STUDENT, FACULTY, ADMIN
+    }
 }

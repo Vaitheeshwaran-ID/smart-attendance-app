@@ -344,7 +344,7 @@ const StudentDashboard = () => {
                           <div style={{
                             color:'var(--text-3)', fontSize:11,
                           }}>
-                            👨‍🏫 {slot.facultyName}
+                            👨‍🏫 {slot.facultyName} ( {slot.facultyRollNumber} )
                           </div>
                           <div style={{
                             color:'var(--text-3)', fontSize:11,
