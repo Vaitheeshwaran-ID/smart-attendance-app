@@ -1,6 +1,8 @@
 # 🎓 Smart Curriculum & Attendance Management System
 
 A full-stack web application for college attendance management using QR codes and GPS verification.
+made with assistence of claude
+
 
 ## 👥 Roles
 - 🎓 Student — Mark attendance, view reports
@@ -37,5 +39,19 @@ npm install
 npm start
 ```
 
-## 📊 Screenshots
-Coming soon...
+## 📸 Screenshots
+
+### 🔐 Login Page
+![Login](Screenshot/HomeTab.png)
+
+### 🎓 Student Dashboard
+![Student](Screenshot/StudentDashboard.png)
+
+### 👨‍🏫 Faculty Dashboard
+![Faculty](Screenshot/FacultyDashboard.png)
+
+### 👩‍💼 Advisor Dashboard
+![Advisor](Screenshot/ClassAdvisorDashboard.png)
+
+### 👨‍💼 Admin Dashboard
+![Admin](Screenshot/HodDashboard.png)
